@@ -2,6 +2,7 @@
   sudokuTable.cpp
   Gerando Código...
 LINK : warning LNK4075: ignorando '/INCREMENTAL' devido a especificação '/FORCE'
+SudokuSolver.obj : warning LNK4006: "bool __cdecl apagarValor(struct TabelaSudoku *,int,int,int)" (?apagarValor@@YA_NPEAUTabelaSudoku@@HHH@Z) já definido no sudokuTable.obj; segunda definição ignorada
 SudokuSolver.obj : warning LNK4006: "bool __cdecl setValor(struct TabelaSudoku *,int,int,int)" (?setValor@@YA_NPEAUTabelaSudoku@@HHH@Z) já definido no sudokuTable.obj; segunda definição ignorada
 C:\Users\natan\Desktop\SudokuSolver\SudokuSolverC-\SudokuSolver\x64\Debug\SudokuSolver.exe : warning LNK4088: imagem sendo gerada devido a opção /FORCE; imagem não pode ser executada
   SudokuSolver.vcxproj -> C:\Users\natan\Desktop\SudokuSolver\SudokuSolverC-\SudokuSolver\x64\Debug\SudokuSolver.exe
