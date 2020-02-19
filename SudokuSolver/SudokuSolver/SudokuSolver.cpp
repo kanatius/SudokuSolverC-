@@ -3,19 +3,53 @@
 
 
 
-#include <opencv2/opencv.hpp>
+//#include <opencv2/opencv.hpp>
 #include <iostream>
-
-using namespace cv;
+#include "sudokuTable.cpp"
+//using namespace cv;
 using namespace std;
 
 int main() {
 
-	Mat img = imread("foto_lates_Natan.PNG");
-	namedWindow("image", WINDOW_NORMAL);
-	imshow("image", img);
-	waitKey(0);
-	return 0;
+	//Mat img = imread("foto_lates_Natan.PNG");
+	//namedWindow("image", WINDOW_NORMAL);
+	//imshow("image", img);
+	//waitKey(0);
+	//return 0;
+
+	TabelaSudoku tabela = TabelaSudoku();
+	TabelaDeEntrada tab = TabelaDeEntrada();
+
+	setValor(&tabela, 2, 2, 8);
+
+	/*
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++)
+		{
+			cout << tab.matriz[i][j] << " ";
+		}
+		cout << endl;
+	}
+	*/
+
+
+
+	for (int i = 0; i < 9; i++)
+	{
+		for (int  j= 0; j < 9; j++)
+		{
+			cout << "Boxes[" << i << "][" << j << "]: ";
+			for (int k = 0; k < tabela.boxes[i][j].quantidade; k++)
+			{
+				cout << tabela.boxes[i][j].cadidato[k]<<" ";
+			}
+			cout << endl;
+		}
+	}
+
+
+
 }
 
 // Executar programa: Ctrl + F5 ou Menu Depurar > Iniciar Sem Depuração

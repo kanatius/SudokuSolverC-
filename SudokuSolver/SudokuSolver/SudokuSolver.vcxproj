@@ -111,6 +111,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Program Files\opencv\build\x64\vc15\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_world420d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/FORCE %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -150,7 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="importacaoOpenCV.cpp">
+    <ClCompile Include="sudokuTable.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <ClCompile Include="SudokuSolver.cpp" />

@@ -18,7 +18,7 @@
     <ClCompile Include="SudokuSolver.cpp">
       <Filter>Arquivos de Origem</Filter>
     </ClCompile>
-    <ClCompile Include="importacaoOpenCV.cpp">
+    <ClCompile Include="sudokuTable.cpp">
       <Filter>Arquivos de Recurso</Filter>
     </ClCompile>
   </ItemGroup>
