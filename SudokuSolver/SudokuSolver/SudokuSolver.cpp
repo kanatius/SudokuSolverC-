@@ -20,8 +20,8 @@ int main() {
 	TabelaSudoku tabela = TabelaSudoku();
 	TabelaDeEntrada tab = TabelaDeEntrada();
 
-	setValor(&tabela, 2, 2, 8);
-	apagarValor(&tabela, 4, 4, 2);
+	//setValor(&tabela, 2, 2, 8);
+	//apagarValor(&tabela, 4, 4, 2);
 
 	/*
 	for (int i = 0; i < 9; i++)
