@@ -4,10 +4,10 @@
 
 
 //#include <opencv2/opencv.hpp>
-#include <iostream>
+
 #include "sudokuTable.cpp"
 //using namespace cv;
-using namespace std;
+
 
 int main() {
 
@@ -19,6 +19,24 @@ int main() {
 
 	TabelaSudoku tabela = TabelaSudoku();
 	TabelaDeEntrada tab = TabelaDeEntrada();
+
+	imprimirMatriz(&tab);
+
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++) {
+			if(tab.matriz[i][j] != 0)
+				setValorNaTabela(&tabela, i, j, tab.matriz[i][j]);
+		}
+	}
+
+	imprimirTabelaBoxes(&tabela);
+
+	while (candidatoSozinho(&tabela)) {
+		cout << endl;
+	};
+	
+	imprimirTabelaBoxes(&tabela);
 
 	//setValor(&tabela, 2, 2, 8);
 	//apagarValor(&tabela, 4, 4, 2);
@@ -33,24 +51,6 @@ int main() {
 		cout << endl;
 	}
 	*/
-
-
-
-	for (int i = 0; i < 9; i++)
-	{
-		for (int  j= 0; j < 9; j++)
-		{
-			cout << "Boxes[" << i << "][" << j << "]: ";
-			for (int k = 0; k < tabela.boxes[i][j].quantidade; k++)
-			{
-				cout << tabela.boxes[i][j].cadidato[k]<<" ";
-			}
-			cout << endl;
-		}
-	}
-
-
-
 }
 
 // Executar programa: Ctrl + F5 ou Menu Depurar > Iniciar Sem Depuração

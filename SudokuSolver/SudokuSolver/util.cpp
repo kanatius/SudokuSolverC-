@@ -10,6 +10,6 @@ int getInicioQuadrado(int pos) {
 		return 3;
 	}
 	return 6;
-	/*ATENÇÃO -  a primeira função delimita os valores de entrada, caso for modificar, certificar que valor de 
+	/*ATENÇÃO -  a primeira função delimita os valores de entrada, caso for modificar, certificar que valor de
 	retorno esteja correto*/
 }
