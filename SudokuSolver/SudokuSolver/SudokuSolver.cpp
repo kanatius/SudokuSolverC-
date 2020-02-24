@@ -1,11 +1,6 @@
-// SudokuSolver.cpp : Este arquivo contém a função 'main'. A execução do programa começa e termina ali.
-//
-
-
-
 //#include <opencv2/opencv.hpp>
 
-#include "sudokuTable.cpp"
+#include "mapaDeCalor.cpp"
 //using namespace cv;
 
 
@@ -18,7 +13,7 @@ int main() {
 	//return 0;
 
 	TabelaSudoku tabela = TabelaSudoku();
-	TabelaDeEntrada tab = TabelaDeEntrada();
+	Sudoku tab = Sudoku();
 
 	imprimirMatriz(&tab);
 

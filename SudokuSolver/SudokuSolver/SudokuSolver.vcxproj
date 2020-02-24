@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="mapaDeCalor.cpp" />
     <ClCompile Include="sudokuTable.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "util.cpp"
+
 #include <iostream>
 using namespace std;
 /*
@@ -19,7 +20,7 @@ struct TabelaDeEntrada
 };
 */
 
-struct TabelaDeEntrada
+struct Sudoku
 {
 	int matriz[9][9] = { //table - 1
 		{0, 0, 0, 3, 1, 0, 0, 2, 0},
@@ -34,7 +35,7 @@ struct TabelaDeEntrada
 	};
 };
 
-void imprimirMatriz(TabelaDeEntrada* tabela) {
+void imprimirMatriz(Sudoku* tabela) {
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
 			if (tabela->matriz[i][j] != 0)
