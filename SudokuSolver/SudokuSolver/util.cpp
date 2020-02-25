@@ -16,3 +16,4 @@ int getInicioQuadrado(int pos) {
 	/*ATENÇÃO -  a primeira função delimita os valores de entrada, caso for modificar, certificar que valor de
 	retorno esteja correto*/
 }
+

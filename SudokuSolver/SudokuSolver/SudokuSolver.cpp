@@ -18,6 +18,8 @@ int main() {
 
 	MapaCalor mapa = getMapaCalor(&tabela);
 	
+	analizarMapa(&mapa);
+
 	imprimirMapaCalor(&mapa);
 	
 	//imprimirMatriz(&tab);
