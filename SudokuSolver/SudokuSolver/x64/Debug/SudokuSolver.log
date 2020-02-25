@@ -1,4 +1,5 @@
-﻿  mapaDeCalor.cpp
+﻿  sudokuTable.cpp
+C:\Users\natan\Desktop\SudokuSolver\SudokuSolverC-\SudokuSolver\SudokuSolver\sudokuTable.cpp(428): warning C4715: 'verificarMapaCompleto': nem todos os caminhos de controle retornam um valor
 LINK : warning LNK4075: ignorando '/INCREMENTAL' devido a especificação '/FORCE'
 sudokuTable.obj : warning LNK4006: "int __cdecl apagarValorNaBox(struct ConjuntoDeCandidatos *,int)" (?apagarValorNaBox@@YAHPEAUConjuntoDeCandidatos@@H@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
 sudokuTable.obj : warning LNK4006: "bool __cdecl candidatoSozinho(struct TabelaSudoku *)" (?candidatoSozinho@@YA_NPEAUTabelaSudoku@@@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
@@ -30,8 +31,12 @@ SudokuSolver.obj : warning LNK4006: "bool __cdecl mesmaLinha(struct BoxValorCalo
 SudokuSolver.obj : warning LNK4006: "bool __cdecl mesmoQuadrado(struct BoxValorCalor,struct BoxValorCalor)" (?mesmoQuadrado@@YA_NUBoxValorCalor@@0@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
 SudokuSolver.obj : warning LNK4006: "bool __cdecl setValorNaBox(struct ConjuntoDeCandidatos *,int)" (?setValorNaBox@@YA_NPEAUConjuntoDeCandidatos@@H@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
 SudokuSolver.obj : warning LNK4006: "bool __cdecl setValorNaTabela(struct TabelaSudoku *,int,int,int)" (?setValorNaTabela@@YA_NPEAUTabelaSudoku@@HHH@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
+SudokuSolver.obj : warning LNK4006: "int __cdecl verificarColunaCompleta(struct Sudoku *,int)" (?verificarColunaCompleta@@YAHPEAUSudoku@@H@Z) já definido no sudokuTable.obj; segunda definição ignorada
+SudokuSolver.obj : warning LNK4006: "int __cdecl verificarLinhaCompleta(struct Sudoku *,int)" (?verificarLinhaCompleta@@YAHPEAUSudoku@@H@Z) já definido no sudokuTable.obj; segunda definição ignorada
+SudokuSolver.obj : warning LNK4006: "int __cdecl verificarMapaCompleto(struct Sudoku *)" (?verificarMapaCompleto@@YAHPEAUSudoku@@@Z) já definido no sudokuTable.obj; segunda definição ignorada
 SudokuSolver.obj : warning LNK4006: "struct ContadorDeNumeros __cdecl verificarNumeroSozinho(struct TabelaSudoku *,struct ContadorDeNumeros * const)" (?verificarNumeroSozinho@@YA?AUContadorDeNumeros@@PEAUTabelaSudoku@@QEAU1@@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
 SudokuSolver.obj : warning LNK4006: "void __cdecl zerarContador(struct ContadorDeNumeros *)" (?zerarContador@@YAXPEAUContadorDeNumeros@@@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
+SudokuSolver.obj : warning LNK4006: "void __cdecl zerarVetor9(int * const)" (?zerarVetor9@@YAXQEAH@Z) já definido no sudokuTable.obj; segunda definição ignorada
 util.obj : warning LNK4006: "int __cdecl getInicioQuadrado(int)" (?getInicioQuadrado@@YAHH@Z) já definido no mapaDeCalor.obj; segunda definição ignorada
 C:\Users\natan\Desktop\SudokuSolver\SudokuSolverC-\SudokuSolver\x64\Debug\SudokuSolver.exe : warning LNK4088: imagem sendo gerada devido a opção /FORCE; imagem não pode ser executada
   SudokuSolver.vcxproj -> C:\Users\natan\Desktop\SudokuSolver\SudokuSolverC-\SudokuSolver\x64\Debug\SudokuSolver.exe

@@ -35,6 +35,7 @@ struct ContadorDeNumeros {
 	int posY;
 };
 
+
 void imprimirMatriz(Sudoku* tabela);
 void zerarContador(ContadorDeNumeros* contador);
 void imprimirTabelaBoxes(TabelaSudoku* tabela);
@@ -249,7 +250,7 @@ bool candidatoSozinho(TabelaSudoku* tabela) {
 		//após terminar a contagem dos itens da linha
 		ContadorDeNumeros contAux = verificarNumeroSozinho(tabela, contador);
 		if (contAux.quantidade == 1) { //se o contador retorno tiver quantidade 1, seta o valor
-			cout << "Valor encontrado sozinho: " << contAux.numero << " na posicao [" << contAux.posY << "][" << contAux.posX << "] - LINHA" << endl;
+			//cout << "Valor encontrado sozinho: " << contAux.numero << " na posicao [" << contAux.posY << "][" << contAux.posX << "] - LINHA" << endl;
 			setValorNaTabela(tabela, contAux.posY, contAux.posX, contAux.numero);
 			return true;
 		};
@@ -279,7 +280,7 @@ bool candidatoSozinho(TabelaSudoku* tabela) {
 		//após terminar a contagem dos itens da linha
 		ContadorDeNumeros contAux = verificarNumeroSozinho(tabela, contador);
 		if (contAux.quantidade == 1) { //se o contador retorno tiver quantidade 1, seta o valor
-			cout << "Valor encontrado sozinho: " << contAux.numero << " na posicao [" << contAux.posY << "][" << contAux.posX << "] - LINHA" << endl;
+			//cout << "Valor encontrado sozinho: " << contAux.numero << " na posicao [" << contAux.posY << "][" << contAux.posX << "] - LINHA" << endl;
 			setValorNaTabela(tabela, contAux.posY, contAux.posX, contAux.numero);
 			return true;
 		};
@@ -312,7 +313,7 @@ bool candidatoSozinho(TabelaSudoku* tabela) {
 			ContadorDeNumeros contAux = verificarNumeroSozinho(tabela, contador);
 			if (contAux.quantidade == 1) { //se o contador retorno tiver quantidade 1, seta o valor		
 				setValorNaTabela(tabela, contAux.posY, contAux.posX, contAux.numero);
-				cout << "Valor encontrado sozinho: " << contAux.numero << " na posicao [" << contAux.posY << "][" << contAux.posX << "] - Quadrado " << getInicioQuadrado(contAux.posY) <<"x"<< getInicioQuadrado(contAux.posX) <<endl;
+				//cout << "Valor encontrado sozinho: " << contAux.numero << " na posicao [" << contAux.posY << "][" << contAux.posX << "] - Quadrado " << getInicioQuadrado(contAux.posY) <<"x"<< getInicioQuadrado(contAux.posX) <<endl;
 				return true;
 			};
 		}
@@ -332,4 +333,132 @@ void imprimirTabelaBoxes(TabelaSudoku* tabela) {
 			cout << endl;
 		}
 	}
+}
+void zerarVetor9(int vetor[9]) {
+	for (int i = 0; i < 9; i++)
+		vetor[i] = 0;
+
+}
+
+
+int verificarLinhaCompleta(Sudoku* sudoku, int linha) {
+
+	int contador[9] = { 0,0,0,0,0,0,0,0,0 };
+
+	for (int j = 0; j < 9; j++) {
+
+		if (sudoku->matriz[linha][j] == 0) {
+			continue;
+		}
+
+		int pos = sudoku->matriz[linha][j] - 1;
+
+		if (contador[pos] == 0) {
+			contador[pos]++;
+		}
+		else if (contador[pos] == 1) { //se for a segunda ocorrencia do numero, returna -1 = numero repetido
+			return -1;
+		}
+	}
+
+	for (int i = 0; i < 9; i++) {
+		if (contador[i] == 0) {
+			return 0;
+		}
+	}
+
+	return 1;
+}
+
+int verificarColunaCompleta(Sudoku* sudoku, int coluna) {
+
+	int contador[9] = { 0,0,0,0,0,0,0,0,0 };
+
+	for (int i = 0; i < 9; i++) {
+
+		if (sudoku->matriz[i][coluna] == 0) {
+			continue;
+		}
+
+		int pos = sudoku->matriz[i][coluna] - 1;
+
+		if (contador[pos] == 0) {
+			contador[pos]++;
+		}
+		else if (contador[pos] == 1) { //se for a segunda ocorrencia do numero, returna -1 = numero repetido
+			return -1;
+		}
+	}
+
+	for (int i = 0; i < 9; i++) {
+		if (contador[i] == 0) {
+			return 0;
+		}
+	}
+
+	return 1;
+}
+
+//-----------------------CONTINUAR DAQUI-----------------------------------------//
+struct Posicao {
+	int x;
+	int y;
+};
+
+Posicao getPosInicialQuadrado(int numDoQuad) {
+	
+	if (numDoQuad < 0 || numDoQuad > 8) {
+		return ;
+	}
+
+
+
+
+}
+
+
+
+int verificarQuadCompleto(Sudoku* sudoku, int coluna) {
+
+	int contador[9] = { 0,0,0,0,0,0,0,0,0 };
+	
+	
+
+	for (int i = 0; i < 9; i++) {
+		if (contador[i] == 0) {
+			return 0;
+		}
+	}
+
+	return 1;
+}
+//-----------------------CONTINUAR DAQUI-----------------------------------------//
+
+
+
+int verificarMapaCompleto(Sudoku* sudoku) {
+	
+	for (int i = 0; i < 9; i++) { //contando os valores relacionados a linha
+		
+		int resultLinha = verificarLinhaCompleta(sudoku, i);
+		int resultColuna = verificarColunaCompleta(sudoku, i);
+
+		if (resultLinha == -1) {
+			cout << "Linha " << i << " com valor repetido" << endl;
+			return -1;
+		}
+		else if (resultLinha == 1) {
+			cout << "Linha " << i << " completa " << endl;
+		}
+
+		if (resultColuna == -1) {
+			cout << "Coluna " << i << " com valor repetido" << endl;
+			return -1;
+		}
+		else if (resultColuna == 1) {
+			cout << "Coluna " << i << " completa " << endl;
+		}
+
+	}
+
 }

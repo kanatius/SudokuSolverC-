@@ -19,16 +19,25 @@ int main() {
 	MapaCalor mapa = getMapaCalor(&tabela);
 	
 	analizarMapa(&mapa);
-
+	
 	imprimirMapaCalor(&mapa);
 	
 	//imprimirMatriz(&tab);
 
 	//imprimirTabelaBoxes(&tabela);
 
-	/*while (candidatoSozinho(&tabela)) {
+	while (candidatoSozinho(&tabela)) {
 		cout << endl;
-	};*/
+	};
+
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9; j++) {
+			tab.matriz[i][j] = tabela.boxes[i][j].cadidato[0];
+		}
+	}
+
+	imprimirMatriz(&tab);
+	verificarMapaCompleto(&tab);
 	
 	//imprimirTabelaBoxes(&tabela);
 
