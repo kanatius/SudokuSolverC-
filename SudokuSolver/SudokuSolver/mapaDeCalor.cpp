@@ -1,9 +1,11 @@
 
 #include "sudokuTable.cpp"
 
-struct MapaCalor {
-	BoxValorCalor* matriz;
-	int quantidade;
+struct ValorCalor {
+	int valor;
+	int calorLinha;
+	int calorColuna;
+	int calorQuad;
 };
 
 struct BoxValorCalor {
@@ -13,12 +15,19 @@ struct BoxValorCalor {
 	int posY;
 };
 
-struct ValorCalor{
-	int valor;
-	int calorLinha;
-	int calorColuna;
-	int calorQuad;
+struct MapaCalor {
+	BoxValorCalor* matriz;
+	int quantidade;
 };
+
+
+
+void imprimirMapaCalor(MapaCalor* mapa);
+int getCalorTotal(ValorCalor* valorCalor);
+int getQtdCelulasComMaisDeUmCandidato(TabelaSudoku* tabela);
+
+
+
 
 void imprimirMapaCalor(MapaCalor* mapa){
 
@@ -26,10 +35,12 @@ void imprimirMapaCalor(MapaCalor* mapa){
 
 		BoxValorCalor* box = &(mapa->matriz[i]);
 
+		cout << "-----------------------------------------------------------" << endl;
+		cout << endl;
 		cout << "BOX POS [" << box->posY << "][" << box->posX << "]" << endl;
 
 		for (int j = 0; j < box->quantidade; j++) { //percorre os valores das boxes
-
+			cout << endl;
 			cout << "Valor " << box->vetor[j].valor << endl;
 			cout << "Calor linha: " << box->vetor[j].calorLinha << endl;
 			cout << "Calor coluna: " << box->vetor[j].calorColuna << endl;
@@ -37,7 +48,9 @@ void imprimirMapaCalor(MapaCalor* mapa){
 
 		}
 		cout << endl;
+		cout << "-----------------------------------------------------------" << endl;
 	}
+
 }
 
 
@@ -53,7 +66,7 @@ ValorCalor* getVetorValorCalor(ConjuntoDeCandidatos* box) {
 		vetorValor[i].valor = box->cadidato[i];
 		vetorValor[i].calorColuna = 0;
 		vetorValor[i].calorLinha = 0;
-		vetorValor[i].valor = 0;
+		vetorValor[i].calorQuad = 0;
 	}
 
 	return vetorValor;
@@ -61,9 +74,10 @@ ValorCalor* getVetorValorCalor(ConjuntoDeCandidatos* box) {
 
  MapaCalor getMapaCalor(TabelaSudoku* tabela) {
 
-	 MapaCalor mapa;
+	 MapaCalor mapa = MapaCalor();
 
-	 int qtdBoxes = getQtdCelulasComMaisDeUmCandidato();
+	 int qtdBoxes = getQtdCelulasComMaisDeUmCandidato(tabela);
+	 cout << "QTD: " << qtdBoxes << endl;
 	 mapa.matriz = new BoxValorCalor[qtdBoxes];
 	 mapa.quantidade = qtdBoxes;
 
@@ -77,8 +91,9 @@ ValorCalor* getVetorValorCalor(ConjuntoDeCandidatos* box) {
 			 if (box->quantidade > 1) { //entra somente em células com qtd de candidatos maior q 1
 				 mapa.matriz[cont].posX = j;
 				 mapa.matriz[cont].posY = i;
-				 mapa.quantidade = box->quantidade;
+				 mapa.matriz[cont].quantidade = box->quantidade;
 				 mapa.matriz[cont].vetor = getVetorValorCalor(box);
+				 cont++;
 			 }
 		 }
 	 }

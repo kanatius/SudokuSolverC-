@@ -1,3 +1,6 @@
+int getInicioQuadrado(int pos);
+
+
 int getInicioQuadrado(int pos) {
 	if (pos < 0 || pos > 8) { //a posição na tabela vai somente de 0 a 8
 		return -1;

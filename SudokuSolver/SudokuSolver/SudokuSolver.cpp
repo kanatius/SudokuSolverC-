@@ -11,27 +11,24 @@ int main() {
 	//imshow("image", img);
 	//waitKey(0);
 	//return 0;
-
-	TabelaSudoku tabela = TabelaSudoku();
+	
 	Sudoku tab = Sudoku();
 
-	imprimirMatriz(&tab);
+	TabelaSudoku tabela = gerarTabelaSudoku(&tab);
 
-	for (int i = 0; i < 9; i++)
-	{
-		for (int j = 0; j < 9; j++) {
-			if(tab.matriz[i][j] != 0)
-				setValorNaTabela(&tabela, i, j, tab.matriz[i][j]);
-		}
-	}
-
-	imprimirTabelaBoxes(&tabela);
-
-	while (candidatoSozinho(&tabela)) {
-		cout << endl;
-	};
+	MapaCalor mapa = getMapaCalor(&tabela);
 	
-	imprimirTabelaBoxes(&tabela);
+	imprimirMapaCalor(&mapa);
+	
+	//imprimirMatriz(&tab);
+
+	//imprimirTabelaBoxes(&tabela);
+
+	/*while (candidatoSozinho(&tabela)) {
+		cout << endl;
+	};*/
+	
+	//imprimirTabelaBoxes(&tabela);
 
 	//setValor(&tabela, 2, 2, 8);
 	//apagarValor(&tabela, 4, 4, 2);

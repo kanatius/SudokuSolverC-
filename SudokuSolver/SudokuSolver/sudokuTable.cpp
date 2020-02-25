@@ -3,6 +3,49 @@
 
 #include <iostream>
 using namespace std;
+
+struct Sudoku
+{
+	int matriz[9][9] = { //table - 1
+		{0, 0, 0, 3, 1, 0, 0, 2, 0},
+		{4, 0, 0, 0, 8, 0, 0, 1, 0},
+		{9, 0, 7, 4, 0, 2, 3, 8, 0},
+		{0, 8, 0, 6, 0, 7, 9, 0, 0},
+		{0, 0, 6, 0, 0, 0, 0, 0, 0},
+		{0, 4, 3, 0, 0, 0, 0, 5, 2},
+		{8, 6, 5, 0, 0, 4, 2, 3, 0},
+		{0, 7, 0, 2, 0, 1, 8, 9, 5},
+		{1, 2, 0, 0, 3, 5, 0, 0, 7}
+	};
+};
+
+struct ConjuntoDeCandidatos {
+	int quantidade = 9; //A box iniciara com os 9 candidatos
+	int cadidato[9] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }; //cada box terá inicialmente todos os candidatos
+};
+
+struct TabelaSudoku {
+	ConjuntoDeCandidatos boxes[9][9];
+};
+
+struct ContadorDeNumeros {
+	int numero;
+	int quantidade;
+	int posX;
+	int posY;
+};
+
+void imprimirMatriz(Sudoku* tabela);
+void zerarContador(ContadorDeNumeros* contador);
+void imprimirTabelaBoxes(TabelaSudoku* tabela);
+bool setValorNaBox(ConjuntoDeCandidatos* box, int valor);
+bool setValorNaTabela(TabelaSudoku* tabela, int posY, int posX, int valor);
+bool candidatoSozinho(TabelaSudoku* tabela);
+TabelaSudoku gerarTabelaSudoku(Sudoku* tab);
+ContadorDeNumeros verificarNumeroSozinho(TabelaSudoku* tabela, ContadorDeNumeros contador[9]);
+
+
+
 /*
 struct TabelaDeEntrada
 {
@@ -20,20 +63,6 @@ struct TabelaDeEntrada
 };
 */
 
-struct Sudoku
-{
-	int matriz[9][9] = { //table - 1
-		{0, 0, 0, 3, 1, 0, 0, 2, 0},
-		{4, 0, 0, 0, 8, 0, 0, 1, 0},
-		{9, 0, 7, 4, 0, 2, 3, 8, 0},
-		{0, 8, 0, 6, 0, 7, 9, 0, 0},
-		{0, 0, 6, 0, 0, 0, 0, 0, 0},
-		{0, 4, 3, 0, 0, 0, 0, 5, 2},
-		{8, 6, 5, 0, 0, 4, 2, 3, 0},
-		{0, 7, 0, 2, 0, 1, 8, 9, 5},
-		{1, 2, 0, 0, 3, 5, 0, 0, 7}
-	};
-};
 
 void imprimirMatriz(Sudoku* tabela) {
 	for (int i = 0; i < 9; i++) {
@@ -52,14 +81,24 @@ void imprimirMatriz(Sudoku* tabela) {
 
 
 /*----------------------------------------------------------------*/
-struct ConjuntoDeCandidatos {
-	int quantidade = 9; //A box iniciara com os 9 candidatos
-	int cadidato[9] = { 1, 2, 3, 4, 5, 6, 7, 8, 9 }; //cada box terá inicialmente todos os candidatos
-};
 
-struct TabelaSudoku {
-	ConjuntoDeCandidatos boxes[9][9];
-};
+
+TabelaSudoku gerarTabelaSudoku(Sudoku* tab) {
+
+	TabelaSudoku tabela = TabelaSudoku();
+
+
+	for (int i = 0; i < 9; i++)
+	{
+		for (int j = 0; j < 9; j++) {
+			if (tab->matriz[i][j] != 0) {
+				setValorNaTabela(&tabela, i, j, tab->matriz[i][j]);
+			}
+		}
+	}
+	return tabela;
+}
+
 bool setValorNaBox(ConjuntoDeCandidatos* box, int valor) {
 	//verifica se o valor recebido está entre 1 e 9
 	if (valor < 1 || valor > 9)
@@ -99,12 +138,10 @@ int apagarValorNaBox(ConjuntoDeCandidatos* box, int valor) {
 };
 
 bool setValorNaTabela(TabelaSudoku* tabela, int posY, int posX, int valor) {
-	cout << posY<<"x"<<posX<< " valor: " << valor<< endl;
 	//verifica se a posição é válida
 	if (posX < 0 || posX > 8 || posY < 0 || posY > 8) {
 		return false;
 	}
-	cout << "PASSOU!" << endl;
 	ConjuntoDeCandidatos* box = &(tabela->boxes[posY][posX]);
 
 	if (setValorNaBox(box, valor)) {
@@ -114,7 +151,6 @@ bool setValorNaTabela(TabelaSudoku* tabela, int posY, int posX, int valor) {
 		for (int i = 0; i < 9; i++) {
 			if (i != posX) { //como o for percorrerá TODA a linha, incluindo a box que acabou de ser setada, deve-se verificar se a coluna é diferente da do numeor setado
 				ConjuntoDeCandidatos* boxAux = &(tabela->boxes[posY][i]); //pega cada coluna da linha
-				cout << "Apagando valor " << valor << " na posição " << posY << i << endl;
 				apagarValorNaBox(boxAux, valor);
 			}
 		}
@@ -123,7 +159,6 @@ bool setValorNaTabela(TabelaSudoku* tabela, int posY, int posX, int valor) {
 		for (int i = 0; i < 9; i++) {
 			if (i != posY) { //como o for percorrerá TODA a coluna, incluindo a box que acabou de ser setada, deve-se verificar se a coluna é diferente da do numeor setado
 				ConjuntoDeCandidatos* boxAux = &(tabela->boxes[i][posX]);
-				cout << "Apagando valor " << valor << " na posição " << i << posX << endl;
 				apagarValorNaBox(boxAux, valor);
 			}
 		}
@@ -137,14 +172,11 @@ bool setValorNaTabela(TabelaSudoku* tabela, int posY, int posX, int valor) {
 			for (int x = inicioX; x < inicioX + 3; x++) {
 				if (!(y == posY && x == posX)) { //se a posição percorrida for diferente da box do valor setado
 					ConjuntoDeCandidatos* boxAux = &(tabela->boxes[y][x]);
-					cout << "Apagando valor " << valor << " na posição " << y << x << endl;
 					apagarValorNaBox(boxAux, valor);
 				}
 			}
 		}
-		/*--------Continuar daqui----------*/
 		return true;
-		/*--------Continuar daqui----------*/
 	}
 	return false;
 }
@@ -155,12 +187,6 @@ bool setValorNaTabela(TabelaSudoku* tabela, int posY, int posX, int valor) {
 
 //candidato sozinho//
 
-struct ContadorDeNumeros {
-	int numero;
-	int quantidade;
-	int posX;
-	int posY;
-};
 
 ContadorDeNumeros verificarNumeroSozinho(TabelaSudoku* tabela, ContadorDeNumeros contador[9]) {
 
